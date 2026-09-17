@@ -1,0 +1,1 @@
+Usage: ./bin/safe_marker.sh course-marker

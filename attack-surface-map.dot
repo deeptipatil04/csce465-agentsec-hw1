@@ -1,0 +1,108 @@
+digraph OpenClaw_DFD {
+    rankdir=LR;
+    graph [fontsize=12, labelloc="t",
+           label="CSCE 465 HW1 - OpenClaw Attack Surface / Data Flow Diagram"];
+    node [shape=box, fontsize=10];
+    edge [fontsize=9];
+
+    user [label="User / Web UI\nPrincipal: Trusted User"];
+
+    web [label="Local Webpage Server\n127.0.0.1:8000\nUNTRUSTED CONTENT"];
+
+    subgraph cluster_vm {
+        label="Trust Boundary: Ubuntu 24.04 VM";
+        style=dashed;
+
+        gateway [label="OpenClaw Gateway\n127.0.0.1:18789"];
+
+        context [label="Agent Context\nAsset: Prompts + Context"];
+
+        decision [label="Skill / Tool Decision\nAUTHORIZATION BOUNDARY"];
+
+        shell [label="Shell / File Operation\nAsset: Execution Privileges"];
+
+        os [label="Ubuntu VM OS / Filesystem\nAsset: Local Files"];
+
+        audit [label="Audit / Evidence Logs\nAsset: Security Evidence"];
+    }
+
+    model [label="Model Provider\nTAMU API / Model\nExternal Principal"];
+
+    user -> gateway [
+        label="Trusted user request\nTrust Boundary 1"
+    ];
+
+    gateway -> context [
+        label="Request + conversation context"
+    ];
+
+    context -> model [
+        label="Prompt / context\nTrust Boundary 2"
+    ];
+
+    model -> context [
+        label="Model response / proposed action"
+    ];
+
+    web -> context [
+        label="External webpage data\nUNTRUSTED\nTrust Boundary 3"
+    ];
+
+    context -> decision [
+        label="Proposed skill/tool action"
+    ];
+
+    decision -> shell [
+        label="Authorized execution\nTrust Boundary 4"
+    ];
+
+    shell -> os [
+        label="File/process operation\nTrust Boundary 5"
+    ];
+
+    decision -> audit [
+        label="Tool decision / status"
+    ];
+
+    shell -> audit [
+        label="Execution result"
+    ];
+
+    web -> context [
+        label="THREAT 1: Indirect prompt injection",
+        style=dashed
+    ];
+
+    context -> decision [
+        label="THREAT 2: Unauthorized tool request",
+        style=dashed
+    ];
+
+    decision -> shell [
+        label="THREAT 3: Malicious arguments",
+        style=dashed
+    ];
+
+    shell -> os [
+        label="THREAT 4: Unauthorized file modification",
+        style=dashed
+    ];
+
+    context -> model [
+        label="THREAT 5: Credential/data exposure",
+        style=dashed
+    ];
+
+    web -> context [
+        label="THREAT 6: Malicious external content",
+        style=dashed
+    ];
+
+    policy [shape=note,
+        label="Execution Policy Control\nopenclaw exec-policy show:\nsecurity=full, ask=off\n\nDirect experiment:\nskill_workshop action blocked\nwhen approval expired"];
+
+    policy -> decision [
+        label="Preventive / authorization control",
+        style=dotted
+    ];
+}

@@ -1,0 +1,5 @@
+model.run via local
+provider: ollama
+model: qwen3.5:4b
+outputs: 1
+agent-ready

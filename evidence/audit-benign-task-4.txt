@@ -1,0 +1,22 @@
+TIME	KIND	STATUS	AGENT	RUN	ACTION
+2026-09-17T01:21:42.294Z	agent_run	succeeded	main	d1a24623-3238-4ca…	agent.run.finished
+2026-09-17T01:21:37.604Z	tool_action	succeeded	main	d1a24623-3238-4ca…	tool.action.finished:exec
+2026-09-17T01:21:31.465Z	tool_action	started	main	d1a24623-3238-4ca…	tool.action.started:exec
+2026-09-17T01:21:26.730Z	tool_action	succeeded	main	d1a24623-3238-4ca…	tool.action.finished:read
+2026-09-17T01:21:26.614Z	tool_action	started	main	d1a24623-3238-4ca…	tool.action.started:read
+2026-09-17T01:21:23.114Z	agent_run	started	main	d1a24623-3238-4ca…	agent.run.started
+2026-09-17T01:19:19.142Z	agent_run	succeeded	main	8cc75ab3-3b07-4a2…	agent.run.finished
+2026-09-17T01:19:12.676Z	agent_run	started	main	8cc75ab3-3b07-4a2…	agent.run.started
+2026-09-16T23:34:31.859Z	agent_run	succeeded	main	17ca45c3-a1c9-469…	agent.run.finished
+2026-09-16T23:34:27.606Z	agent_run	started	main	17ca45c3-a1c9-469…	agent.run.started
+2026-09-16T23:28:15.883Z	agent_run	succeeded	main	d26cddd0-d8f2-43d…	agent.run.finished
+2026-09-16T23:28:10.523Z	tool_action	blocked	main	d26cddd0-d8f2-43d…	tool.action.finished:skill_workshop
+2026-09-16T23:26:55.055Z	agent_run	started	main	d26cddd0-d8f2-43d…	agent.run.started
+2026-09-16T23:21:23.873Z	agent_run	timed_out	main	5763acfc-33e4-4c0…	agent.run.finished
+2026-09-16T23:21:20.978Z	agent_run	started	main	5763acfc-33e4-4c0…	agent.run.started
+2026-09-16T22:51:29.674Z	agent_run	succeeded	main	54f68379-e185-416…	agent.run.finished
+2026-09-16T22:51:23.546Z	agent_run	started	main	54f68379-e185-416…	agent.run.started
+2026-09-16T09:38:02.569Z	agent_run	timed_out	main	ba19df80-51fc-4b9…	agent.run.finished
+2026-09-16T09:33:00.684Z	agent_run	started	main	ba19df80-51fc-4b9…	agent.run.started
+2026-09-16T09:03:23.926Z	agent_run	cancelled	main	07a87e5a-d3bd-4c3…	agent.run.finished
+More records: --cursor 11

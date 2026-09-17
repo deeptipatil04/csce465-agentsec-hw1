@@ -1,0 +1,30 @@
+Exec Policy
+┌────────────────┬─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ Field          │ Value                                                                                               │
+├────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Config         │ ~/.openclaw/openclaw.json                                                                           │
+│ Approvals      │ ~/.openclaw/exec-approvals.json                                                                     │
+│ Approvals File │ present                                                                                             │
+└────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+Effective Policy
+┌──────────────────┬────────────────────────┬─────────────────────────────────────────────────┬────────────────────────┐
+│ Scope            │ Requested              │ Host                                            │ Effective              │
+├──────────────────┼────────────────────────┼─────────────────────────────────────────────────┼────────────────────────┤
+│ tools.exec       │ host=auto (OpenClaw    │ security=full (inherits requested tool          │ security=full\nask=off │
+│                  │ default                │ policy)\nask=off (inherits requested tool       │                        │
+│                  │ (auto))\nsecurity=full │ policy)\naskFallback=deny (OpenClaw default     │                        │
+│                  │ (OpenClaw default      │ (deny))                                         │                        │
+│                  │ (full))\nask=off       │                                                 │                        │
+│                  │ (OpenClaw default      │                                                 │                        │
+│                  │ (off))                 │                                                 │                        │
+│ agent:crestodian │ host=auto (OpenClaw    │ security=full (~/.openclaw/exec-approvals.json  │ security=full\nask=off │
+│                  │ default                │ agents.crestodian.security)\nask=off (~/.       │                        │
+│                  │ (auto))\nsecurity=full │ openclaw/exec-approvals.json agents.crestodian. │                        │
+│                  │ (OpenClaw default      │ ask)\naskFallback=deny (OpenClaw default        │                        │
+│                  │ (full))\nask=off       │ (deny))                                         │                        │
+│                  │ (OpenClaw default      │                                                 │                        │
+│                  │ (off))                 │                                                 │                        │
+└──────────────────┴────────────────────────┴─────────────────────────────────────────────────┴────────────────────────┘
+
+Effective exec policy is the host approvals file intersected with requested tools.exec policy.
